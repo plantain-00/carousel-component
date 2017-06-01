@@ -1,7 +1,6 @@
 export type CarouselData = {
-    /* tslint:disable:ban-types */
+    // tslint:disable-next-line:ban-types
     component: string | Function;
-    /* tslint:enable:ban-types */
     data: any;
 };
 
