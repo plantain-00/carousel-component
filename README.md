@@ -7,6 +7,13 @@
 # carousel-component
 A vuejs and reactjs carousel component.
 
+#### features
+
++ vuejs component
++ reactjs component
++ commonjs module
++ custom component
+
 #### install
 
 `npm i carousel-component`
@@ -37,8 +44,6 @@ import "carousel-component/dist/vue";
 
 the online demo: https://plantain-00.github.io/carousel-component/demo/vue/index.html
 
-the source code of the demo: https://github.com/plantain-00/carousel-component/tree/master/demo/vue
-
 #### reactjs component demo
 
 ```ts
@@ -56,8 +61,6 @@ import { Carousel } from "carousel-component/dist/react";
 ```
 
 the online demo: https://plantain-00.github.io/carousel-component/demo/react/index.html
-
-the source code of the demo: https://github.com/plantain-00/carousel-component/tree/master/demo/react
 
 #### properties and events of the component
 
@@ -78,10 +81,3 @@ type CarouselData = {
     data: any; // the data will be passed to the component as `data` props
 };
 ```
-
-#### features
-
-+ vuejs component
-+ reactjs component
-+ commonjs module
-+ custom component

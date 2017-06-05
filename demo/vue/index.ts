@@ -15,12 +15,16 @@ import { CarouselData } from "../../dist/common";
 
 @Component({
     template: `
-    <carousel :data="data"
-        timeout="500"
-        interval="3000"
-        count="5"
-        width="200"
-        height="150"></carousel>
+    <div>
+        <a href="https://github.com/plantain-00/carousel-component/tree/master/demo/vue/index.ts" target="_blank">the source code of the demo</a>
+        <carousel :data="data"
+            timeout="500"
+            interval="3000"
+            count="5"
+            width="200"
+            height="150">
+        </carousel>
+    </div>
     `,
 })
 class App extends Vue {
