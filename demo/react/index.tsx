@@ -4,13 +4,7 @@ import * as ReactDOM from "react-dom";
 import { Carousel } from "../../dist/react";
 import { CarouselData } from "../../dist/common";
 
-class CarouselItem extends React.Component<{ data: number }, {}> {
-    render() {
-        return (
-            <span>{this.props.data}</span>
-        );
-    }
-}
+const CarouselItem: React.StatelessComponent<{ data: number }> = props => <span>{props.data}</span>;
 
 class Main extends React.Component<{}, {}> {
     data: CarouselData[] = [
