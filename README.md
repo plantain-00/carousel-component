@@ -11,7 +11,6 @@ A vuejs and reactjs carousel component.
 
 + vuejs component
 + reactjs component
-+ commonjs module
 + custom component
 
 #### install
