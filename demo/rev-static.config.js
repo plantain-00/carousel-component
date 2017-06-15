@@ -1,12 +1,8 @@
 module.exports = {
     inputFiles: [
-        "demo/*.bundle.js",
+        "demo/**/index.bundle.js",
         "demo/**/index.ejs.html",
         "demo/*.bundle.css",
-    ],
-    excludeFiles: [
-        "demo/*-*.*",
-        "demo/*.config.js",
     ],
     outputFiles: file => file.replace(".ejs", ""),
     json: false,

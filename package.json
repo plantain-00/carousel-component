@@ -11,7 +11,7 @@
     "lessc": "lessc src/carousel.less > dist/carousel.css",
     "stylelint": "stylelint \"src/**/*.less\"",
     "cleancss": "cleancss -o dist/carousel.min.css dist/carousel.css &&  cleancss -o demo/index.bundle.css dist/carousel.min.css ./node_modules/github-fork-ribbon-css/gh-fork-ribbon.css",
-    "clean": "rimraf dist && rimraf demo/*.bundle-*.js",
+    "clean": "rimraf dist && rimraf demo/**/index.bundle-*.js",
     "file2variable": "file2variable-cli src/vue.template.html -o src/variables.ts --html-minify",
     "build": "npm run clean && npm run file2variable && npm run tsc && npm run lessc && npm run cleancss && npm run webpack && npm run rev-static",
     "lint": "npm run tslint && npm run stylelint"
