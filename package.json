@@ -17,7 +17,7 @@
     "lint": "npm run tslint && npm run stylelint && npm run standard",
     "standard": "standard **/*.config.js",
     "fix": "standard --fix **/*.config.js",
-    "test": "tsc -p src && tsc -p spec && karma start spec/karma.config.js"
+    "test": "tsc -p spec && karma start spec/karma.config.js"
   },
   "repository": {
     "type": "git",
