@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import "../../dist/vue";
+import { CarouselData } from "../../dist/vue";
 
 @Component({
     template: `<span>{{data}}</span>`,
@@ -10,8 +11,6 @@ class CarouselItem extends Vue {
     data: number;
 }
 Vue.component("carousel-item", CarouselItem);
-
-import { CarouselData } from "../../dist/common";
 
 @Component({
     template: `
