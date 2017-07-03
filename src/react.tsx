@@ -12,7 +12,7 @@ export type Props = {
 };
 
 export class Carousel extends React.Component<Props, {}> {
-    timer: NodeJS.Timer;
+    timer: number;
     currentIndex = 0;
     hoveringLeft = false;
     hoveringRight = false;

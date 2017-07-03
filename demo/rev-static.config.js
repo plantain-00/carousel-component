@@ -14,5 +14,6 @@ module.exports = {
   noOutputFiles: [],
   es6: false,
   less: false,
-  scss: false
+  scss: false,
+  base: 'demo'
 }

@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import * as common from "./common";
-import { srcVueTemplateHtml } from "./variables";
+import { vueTemplateHtml } from "./variables";
 
 @Component({
-    template: srcVueTemplateHtml,
+    template: vueTemplateHtml,
     props: ["data", "timeout", "interval", "count", "width", "height"],
 })
 class Carousel extends Vue {
@@ -15,7 +15,7 @@ class Carousel extends Vue {
     width: number;
     height: number;
 
-    timer: NodeJS.Timer;
+    timer: number;
     currentIndex = 0;
     hoveringLeft = false;
     hoveringRight = false;
