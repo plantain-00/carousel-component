@@ -20,7 +20,7 @@ A vuejs and reactjs carousel component.
 #### link css
 
 ```html
-<link rel="stylesheet" href="./node_modules/carousel-component/dist/carousel.min.css" />
+<link rel="stylesheet" href="./node_modules/carousel-component/carousel.min.css" />
 ```
 
 #### vuejs component demo
@@ -28,7 +28,7 @@ A vuejs and reactjs carousel component.
 `npm i vue vue-class-component`
 
 ```ts
-import "carousel-component/dist/vue";
+import "carousel-component/vue";
 ```
 
 ```html
@@ -46,7 +46,7 @@ the online demo: https://plantain-00.github.io/carousel-component/demo/vue/index
 #### reactjs component demo
 
 ```ts
-import { Carousel } from "carousel-component/dist/react";
+import { Carousel } from "carousel-component/react";
 ```
 
 ```jsx
@@ -79,4 +79,14 @@ type CarouselData = {
     component: string | Function; // the item component, for vuejs, it is the component name, for reactjs, it is the class object
     data: any; // the data will be passed to the component as `data` props
 };
+```
+
+#### change logs
+
+```ts
+// v2
+import "carousel-component/vue";
+
+// v1
+import "carousel-component/dist/vue";
 ```
