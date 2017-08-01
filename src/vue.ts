@@ -16,7 +16,7 @@ class Carousel extends Vue {
     width: number;
     height: number;
 
-    timer: number;
+    timer: NodeJS.Timer;
     currentIndex = 0;
     hoveringLeft = false;
     hoveringRight = false;
