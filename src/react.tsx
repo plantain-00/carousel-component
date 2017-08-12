@@ -3,6 +3,9 @@ import * as ReactDOM from "react-dom";
 import * as common from "./common";
 export * from "./common";
 
+/**
+ * @public
+ */
 export type Props = {
     data: common.CarouselData[];
     timeout: number;
@@ -12,6 +15,9 @@ export type Props = {
     height: number;
 };
 
+/**
+ * @public
+ */
 export class Carousel extends React.Component<Props, {}> {
     timer: NodeJS.Timer;
     currentIndex = 0;
