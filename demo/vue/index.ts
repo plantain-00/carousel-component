@@ -27,7 +27,7 @@ Vue.component("carousel-item", CarouselItem);
     `,
 })
 class App extends Vue {
-    data: CarouselData[] = [
+    data: CarouselData<number>[] = [
         { data: 1, component: "carousel-item" },
         { data: 2, component: "carousel-item" },
         { data: 3, component: "carousel-item" },

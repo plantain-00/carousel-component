@@ -1,7 +1,7 @@
-export type CarouselData = {
+export type CarouselData<T = any> = {
     // tslint:disable-next-line:ban-types
     component: string | Function;
-    data: any;
+    data: T;
 };
 
 const animationKeyframesIdName = "carousel-animation-keyframes";
@@ -36,7 +36,7 @@ export function runAnimation(ul: HTMLElement, timeout: number, keyframes: string
     });
 }
 
-export function appendLeftAndRightData(data: CarouselData[], actualCount: number) {
+export function appendLeftAndRightData<T>(data: CarouselData<T>[], actualCount: number) {
     const leftItems = data.slice(data.length - actualCount);
     const rightItems = data.slice(0, actualCount);
     data.unshift(...leftItems);

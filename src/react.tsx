@@ -6,8 +6,8 @@ export * from "./common";
 /**
  * @public
  */
-export type Props = {
-    data: common.CarouselData[];
+export type Props<T> = {
+    data: common.CarouselData<T>[];
     timeout: number;
     interval: number;
     count: number;
@@ -18,17 +18,17 @@ export type Props = {
 /**
  * @public
  */
-export class Carousel extends React.Component<Props, {}> {
-    timer: NodeJS.Timer;
-    currentIndex = 0;
-    hoveringLeft = false;
-    hoveringRight = false;
-    lastWidth: number;
-    lastNum: number;
-    actualCount = 0;
-    container: HTMLElement;
+export class Carousel<T> extends React.Component<Props<T>, {}> {
+    private timer: NodeJS.Timer;
+    private currentIndex = 0;
+    private hoveringLeft = false;
+    private hoveringRight = false;
+    private lastWidth: number;
+    private lastNum: number;
+    private actualCount = 0;
+    private container: HTMLElement;
 
-    constructor(props: Props) {
+    constructor(props: Props<T>) {
         super(props);
         this.actualCount = this.props.data.length < +this.props.count ? this.props.data.length : +this.props.count;
         this.currentIndex = this.actualCount;
@@ -38,101 +38,6 @@ export class Carousel extends React.Component<Props, {}> {
 
     componentDidMount() {
         this.container = (ReactDOM.findDOMNode(this).childNodes[0] as HTMLElement).childNodes[0] as HTMLElement;
-    }
-
-    get leftStyle() {
-        return {
-            opacity: this.hoveringLeft ? 100 : 0,
-        };
-    }
-
-    get rightStyle() {
-        return {
-            opacity: this.hoveringRight ? 100 : 0,
-        };
-    }
-
-    get containerStyle() {
-        return {
-            width: `${this.props.width * this.actualCount}px`,
-            height: `${this.props.height}px`,
-        };
-    }
-    get mainStyle() {
-        return {
-            width: `${this.props.width * this.actualCount}px`,
-        };
-    }
-    get ulStyle() {
-        return {
-            width: `${this.props.width * this.actualCount * 3}px`,
-            left: `-${this.props.width * this.actualCount}px`,
-        };
-    }
-    get liStyle() {
-        return {
-            width: `${this.props.width}px`,
-            height: `${this.props.height}px`,
-        };
-    }
-
-    setStyle(num: number, width: number) {
-        if (this.lastNum === num && this.lastWidth === width) {
-            return;
-        }
-        this.lastNum = num;
-        this.lastWidth = width;
-        common.setStyle(num, width, this.actualCount);
-    }
-    moveLeft(num: number) {
-        this.setStyle(num, this.props.width);
-        common.runAnimation(this.container, this.props.timeout, "move-left", num, () => {
-            this.currentIndex -= num;
-            if (this.currentIndex < this.actualCount) {
-                this.currentIndex += this.props.data.length - this.actualCount * 2;
-            }
-            this.setState({ currentIndex: this.currentIndex });
-        });
-    }
-    moveRight(num: number) {
-        this.setStyle(num, this.props.width);
-        common.runAnimation(this.container, this.props.timeout, "move-right", num, () => {
-            this.currentIndex += num;
-            if (this.currentIndex >= this.props.data.length - this.actualCount) {
-                this.currentIndex -= this.props.data.length - this.actualCount * 2;
-            }
-            this.setState({ currentIndex: this.currentIndex });
-        });
-    }
-    pause() {
-        if (this.timer) {
-            clearInterval(this.timer);
-        }
-    }
-    start() {
-        this.timer = setInterval(() => {
-            this.moveRight(1);
-        }, this.props.interval);
-    }
-    mouseenterLeft() {
-        this.hoveringLeft = true;
-        this.setState({ hoveringLeft: this.hoveringLeft });
-        this.pause();
-    }
-    mouseleaveLeft() {
-        this.hoveringLeft = false;
-        this.setState({ hoveringLeft: this.hoveringLeft });
-        this.start();
-    }
-    mouseenterRight() {
-        this.hoveringRight = true;
-        this.setState({ hoveringRight: this.hoveringRight });
-        this.pause();
-    }
-    mouseleaveRight() {
-        this.hoveringRight = false;
-        this.setState({ hoveringRight: this.hoveringRight });
-        this.start();
     }
 
     render() {
@@ -168,5 +73,100 @@ export class Carousel extends React.Component<Props, {}> {
                 </div >
             </div >
         );
+    }
+
+    private get leftStyle() {
+        return {
+            opacity: this.hoveringLeft ? 100 : 0,
+        };
+    }
+
+    private get rightStyle() {
+        return {
+            opacity: this.hoveringRight ? 100 : 0,
+        };
+    }
+
+    private get containerStyle() {
+        return {
+            width: `${this.props.width * this.actualCount}px`,
+            height: `${this.props.height}px`,
+        };
+    }
+    private get mainStyle() {
+        return {
+            width: `${this.props.width * this.actualCount}px`,
+        };
+    }
+    private get ulStyle() {
+        return {
+            width: `${this.props.width * this.actualCount * 3}px`,
+            left: `-${this.props.width * this.actualCount}px`,
+        };
+    }
+    private get liStyle() {
+        return {
+            width: `${this.props.width}px`,
+            height: `${this.props.height}px`,
+        };
+    }
+
+    private setStyle(num: number, width: number) {
+        if (this.lastNum === num && this.lastWidth === width) {
+            return;
+        }
+        this.lastNum = num;
+        this.lastWidth = width;
+        common.setStyle(num, width, this.actualCount);
+    }
+    private moveLeft(num: number) {
+        this.setStyle(num, this.props.width);
+        common.runAnimation(this.container, this.props.timeout, "move-left", num, () => {
+            this.currentIndex -= num;
+            if (this.currentIndex < this.actualCount) {
+                this.currentIndex += this.props.data.length - this.actualCount * 2;
+            }
+            this.setState({ currentIndex: this.currentIndex });
+        });
+    }
+    private moveRight(num: number) {
+        this.setStyle(num, this.props.width);
+        common.runAnimation(this.container, this.props.timeout, "move-right", num, () => {
+            this.currentIndex += num;
+            if (this.currentIndex >= this.props.data.length - this.actualCount) {
+                this.currentIndex -= this.props.data.length - this.actualCount * 2;
+            }
+            this.setState({ currentIndex: this.currentIndex });
+        });
+    }
+    private pause() {
+        if (this.timer) {
+            clearInterval(this.timer);
+        }
+    }
+    private start() {
+        this.timer = setInterval(() => {
+            this.moveRight(1);
+        }, this.props.interval);
+    }
+    private mouseenterLeft() {
+        this.hoveringLeft = true;
+        this.setState({ hoveringLeft: this.hoveringLeft });
+        this.pause();
+    }
+    private mouseleaveLeft() {
+        this.hoveringLeft = false;
+        this.setState({ hoveringLeft: this.hoveringLeft });
+        this.start();
+    }
+    private mouseenterRight() {
+        this.hoveringRight = true;
+        this.setState({ hoveringRight: this.hoveringRight });
+        this.pause();
+    }
+    private mouseleaveRight() {
+        this.hoveringRight = false;
+        this.setState({ hoveringRight: this.hoveringRight });
+        this.start();
     }
 }

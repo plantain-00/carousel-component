@@ -6,7 +6,7 @@ import { Carousel, CarouselData } from "../../dist/react";
 const CarouselItem: React.StatelessComponent<{ data: number }> = props => <span>{props.data}</span>;
 
 class Main extends React.Component<{}, {}> {
-    data: CarouselData[] = [
+    private data: CarouselData<number>[] = [
         { data: 1, component: CarouselItem },
         { data: 2, component: CarouselItem },
         { data: 3, component: CarouselItem },

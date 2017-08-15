@@ -8,21 +8,21 @@ import { vueTemplateHtml } from "./variables";
     template: vueTemplateHtml,
     props: ["data", "timeout", "interval", "count", "width", "height"],
 })
-class Carousel extends Vue {
-    data: common.CarouselData[];
+class Carousel<T> extends Vue {
+    data: common.CarouselData<T>[];
     timeout: number;
     interval: number;
     count: number;
     width: number;
     height: number;
 
-    timer: NodeJS.Timer;
     currentIndex = 0;
-    hoveringLeft = false;
-    hoveringRight = false;
-    lastWidth: number;
-    lastNum: number;
     actualCount = 0;
+    private timer: NodeJS.Timer;
+    private hoveringLeft = false;
+    private hoveringRight = false;
+    private lastWidth: number;
+    private lastNum: number;
 
     beforeMount() {
         this.actualCount = this.data.length < +this.count ? this.data.length : +this.count;
@@ -67,13 +67,15 @@ class Carousel extends Vue {
         };
     }
 
-    setStyle(num: number, width: number) {
-        if (this.lastNum === num && this.lastWidth === width) {
-            return;
+    pause() {
+        if (this.timer) {
+            clearInterval(this.timer);
         }
-        this.lastNum = num;
-        this.lastWidth = width;
-        common.setStyle(num, width, this.actualCount);
+    }
+    start() {
+        this.timer = setInterval(() => {
+            this.moveRight(1);
+        }, this.interval);
     }
     moveLeft(num: number) {
         this.setStyle(num, this.width);
@@ -93,16 +95,6 @@ class Carousel extends Vue {
             }
         });
     }
-    pause() {
-        if (this.timer) {
-            clearInterval(this.timer);
-        }
-    }
-    start() {
-        this.timer = setInterval(() => {
-            this.moveRight(1);
-        }, this.interval);
-    }
     mouseenterLeft() {
         this.hoveringLeft = true;
         this.pause();
@@ -118,6 +110,15 @@ class Carousel extends Vue {
     mouseleaveRight() {
         this.hoveringRight = false;
         this.start();
+    }
+
+    private setStyle(num: number, width: number) {
+        if (this.lastNum === num && this.lastWidth === width) {
+            return;
+        }
+        this.lastNum = num;
+        this.lastWidth = width;
+        common.setStyle(num, width, this.actualCount);
     }
 }
 

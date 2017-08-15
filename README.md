@@ -76,9 +76,9 @@ height | number | height of items
 #### carousel data structure
 
 ```ts
-type CarouselData = {
+type CarouselData<T = any> = {
     component: string | Function; // the item component, for vuejs, it is the component name, for reactjs, it is the class object
-    data: any; // the data will be passed to the component as `data` props
+    data: T; // the data will be passed to the component as `data` props
 };
 ```
 
