@@ -15,11 +15,12 @@ module.exports = {
         `webpack --display-modules --config demo/webpack.config.js`
       ],
       css: [
-        `lessc src/carousel.less > dist/carousel.css`,
+        `lessc src/carousel.less > src/carousel.css`,
+        `postcss src/carousel.css -o dist/carousel.css`,
         `cleancss -o dist/carousel.min.css dist/carousel.css`,
         `cleancss -o demo/index.bundle.css dist/carousel.min.css ./node_modules/github-fork-ribbon-css/gh-fork-ribbon.css`
       ],
-      clean: `rimraf demo/**/index.bundle-*.js`
+      clean: `rimraf demo/**/index.bundle-*.js demo/*.bundle-*.css`
     },
     `rev-static --config demo/rev-static.config.js`,
     async () => {
