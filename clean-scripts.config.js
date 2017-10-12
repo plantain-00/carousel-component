@@ -49,7 +49,7 @@ module.exports = {
   fix: {
     ts: `tslint --fix ${tsFiles}`,
     js: `standard --fix ${jsFiles}`,
-    less: `stylelint --fix ${tsFiles}`
+    less: `stylelint --fix ${lessFiles}`
   },
   release: `clean-release`,
   watch: {
