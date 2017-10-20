@@ -14,6 +14,7 @@
         "jsx": "react",
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "newLine": "LF"
     }
 }
