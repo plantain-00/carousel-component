@@ -8,31 +8,31 @@ import * as puppeteer from "puppeteer";
     for (const type of ["vue", "react"]) {
         await page.goto(`http://localhost:8000/demo/${type}`);
         await page.waitFor(500);
-        await page.screenshot({ path: `screenshots/${type}-initial.png`, fullPage: true });
+        await page.screenshot({ path: `screenshots/${type}-initial.png` });
 
         await page.waitFor(3000);
-        await page.screenshot({ path: `screenshots/${type}-3s.png`, fullPage: true });
+        await page.screenshot({ path: `screenshots/${type}-3s.png` });
 
         await page.waitFor(3000);
-        await page.screenshot({ path: `screenshots/${type}-6s.png`, fullPage: true });
+        await page.screenshot({ path: `screenshots/${type}-6s.png` });
 
         const right = await page.$(".right");
         await right.hover();
         await page.waitFor(100);
-        await page.screenshot({ path: `screenshots/${type}-right-hover.png`, fullPage: true });
+        await page.screenshot({ path: `screenshots/${type}-right-hover.png` });
 
         await right.click();
         await page.waitFor(500);
-        await page.screenshot({ path: `screenshots/${type}-right-click.png`, fullPage: true });
+        await page.screenshot({ path: `screenshots/${type}-right-click.png` });
 
         const left = await page.$(".left");
         await left.hover();
         await page.waitFor(100);
-        await page.screenshot({ path: `screenshots/${type}-left-hover.png`, fullPage: true });
+        await page.screenshot({ path: `screenshots/${type}-left-hover.png` });
 
         await left.click();
         await page.waitFor(500);
-        await page.screenshot({ path: `screenshots/${type}-left-click.png`, fullPage: true });
+        await page.screenshot({ path: `screenshots/${type}-left-click.png` });
     }
 
     browser.close();
