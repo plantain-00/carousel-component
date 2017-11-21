@@ -42,10 +42,10 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
 
     render() {
         const list = this.props.data.filter((item, i) => i >= this.currentIndex - this.actualCount && i < this.currentIndex + this.actualCount * 2)
-            .map(item => {
+            .map((item, i) => {
                 const conponent = React.createElement(item.component as React.ComponentClass<{ data: any }>, { data: item.data });
                 return (
-                    <li style={this.liStyle}>
+                    <li style={this.liStyle} key={i}>
                         {conponent}
                     </li >
                 );
