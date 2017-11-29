@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 // tslint:disable:no-duplicate-imports
-import "../../dist/vue";
-import { CarouselData } from "../../dist/vue";
+import "../dist/";
+import { CarouselData } from "../dist/";
 
 @Component({
     template: `<span>{{data}}</span>`,

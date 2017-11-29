@@ -1,3 +1,6 @@
+/**
+ * @public
+ */
 export type CarouselData<T = any> = {
     // tslint:disable-next-line:ban-types
     component: string | Function;
@@ -6,6 +9,9 @@ export type CarouselData<T = any> = {
 
 const animationKeyframesIdName = "carousel-animation-keyframes";
 
+/**
+ * @public
+ */
 export function setStyle(num: number, width: number, count: number) {
     let style = document.getElementById(animationKeyframesIdName) as HTMLStyleElement;
     if (!style) {
@@ -24,6 +30,9 @@ export function setStyle(num: number, width: number, count: number) {
 }`;
 }
 
+/**
+ * @public
+ */
 export function runAnimation(ul: HTMLElement, timeout: number, keyframes: string, num: number, next: () => void) {
     ul.style.animation = "";
     window.requestAnimationFrame(() => {
@@ -36,6 +45,9 @@ export function runAnimation(ul: HTMLElement, timeout: number, keyframes: string
     });
 }
 
+/**
+ * @public
+ */
 export function appendLeftAndRightData<T>(data: CarouselData<T>[], actualCount: number) {
     const leftItems = data.slice(data.length - actualCount);
     const rightItems = data.slice(0, actualCount);

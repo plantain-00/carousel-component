@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Carousel, CarouselData } from "../../dist/react";
+import { Carousel, CarouselData } from "../dist/";
 
 const CarouselItem: React.StatelessComponent<{ data: number }> = props => <span>{props.data}</span>;
 

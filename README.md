@@ -14,22 +14,18 @@ A vuejs and reactjs carousel component.
 + reactjs component
 + custom component
 
-#### install
-
-`npm i carousel-component`
-
 #### link css
 
 ```html
-<link rel="stylesheet" href="./node_modules/carousel-component/carousel.min.css" />
+<link rel="stylesheet" href="./node_modules/carousel-component/dist/carousel.min.css" />
 ```
 
-#### vuejs component demo
+#### vuejs component
 
-`npm i vue vue-class-component`
+`npm i carousel-vue-component`
 
 ```ts
-import "carousel-component/vue";
+import "carousel-vue-component";
 ```
 
 ```html
@@ -42,12 +38,14 @@ import "carousel-component/vue";
 </carousel>
 ```
 
-the online demo: https://plantain-00.github.io/carousel-component/demo/vue/index.html
+the online demo: https://plantain-00.github.io/carousel-component/packages/vue/demo
 
-#### reactjs component demo
+#### reactjs component
+
+`npm i carousel-react-component`
 
 ```ts
-import { Carousel } from "carousel-component/react";
+import { Carousel } from "carousel-react-component";
 ```
 
 ```jsx
@@ -60,7 +58,7 @@ import { Carousel } from "carousel-component/react";
 </Carousel>
 ```
 
-the online demo: https://plantain-00.github.io/carousel-component/demo/react/index.html
+the online demo: https://plantain-00.github.io/carousel-component/packages/react/demo
 
 #### properties and events of the component
 
@@ -83,6 +81,33 @@ type CarouselData<T = any> = {
 ```
 
 #### change logs
+
+```bash
+# v2
+npm i carousel-component
+
+# v3
+npm i carousel-vue-component
+npm i carousel-react-component
+```
+
+```ts
+// v2
+import "carousel-component/vue";
+import { Carousel } from "carousel-component/react";
+
+// v3
+import "carousel-vue-component";
+import { Carousel } from "carousel-react-component";
+```
+
+```html
+// v2
+<link rel="stylesheet" href="./node_modules/carousel-component/carousel.min.css" />
+
+// v3
+<link rel="stylesheet" href="./node_modules/carousel-component/dist/carousel.min.css" />
+```
 
 ```ts
 // v2

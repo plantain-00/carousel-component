@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as common from "./common";
-export * from "./common";
+import * as common from "carousel-component";
+export * from "carousel-component";
 
 /**
  * @public

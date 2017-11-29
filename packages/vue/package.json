@@ -1,0 +1,22 @@
+{
+  "name": "carousel-vue-component",
+  "version": "3.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "A vuejs carousel component.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plantain-00/carousel-component.git"
+  },
+  "author": "York Yao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plantain-00/carousel-component/issues"
+  },
+  "homepage": "https://github.com/plantain-00/carousel-component#readme",
+  "dependencies": {
+    "carousel-component": "^3.0.0",
+    "vue": "2",
+    "vue-class-component": "6"
+  }
+}

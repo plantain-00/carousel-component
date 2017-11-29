@@ -1,11 +1,11 @@
 import Vue from "vue";
 import Component from "vue-class-component";
-import * as common from "./common";
-export * from "./common";
-import { vueTemplateHtml } from "./variables";
+import * as common from "carousel-component";
+export * from "carousel-component";
+import { indexTemplateHtml } from "./variables";
 
 @Component({
-    template: vueTemplateHtml,
+    template: indexTemplateHtml,
     props: ["data", "timeout", "interval", "count", "width", "height"],
 })
 class Carousel<T> extends Vue {
