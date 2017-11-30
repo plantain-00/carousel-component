@@ -16,7 +16,7 @@ Vue.component("carousel-item", CarouselItem);
 @Component({
     template: `
     <div>
-        <a href="https://github.com/plantain-00/carousel-component/tree/master/demo/vue/index.ts" target="_blank">the source code of the demo</a>
+        <a href="https://github.com/plantain-00/carousel-component/tree/master/packages/vue/demo" target="_blank">the source code of the demo</a>
         <carousel :data="data"
             timeout="500"
             interval="3000"
