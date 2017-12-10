@@ -1,5 +1,9 @@
 <div class="carousel" :style="containerStyle">
-    <div class="main" :style="mainStyle">
+    <div class="main"
+        :style="mainStyle"
+        @touchstart="touchstart($event)"
+        @touchmove="touchmove($event)"
+        @touchend="touchend($event)">
         <ul ref="ul"
             :style="ulStyle"
             @mouseenter="pause()"

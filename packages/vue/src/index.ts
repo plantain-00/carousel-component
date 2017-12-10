@@ -23,6 +23,8 @@ class Carousel<T> extends Vue {
     private hoveringRight = false;
     private lastWidth: number;
     private lastNum: number;
+    private touchStartPageX: number;
+    private touchOffset = 0;
 
     beforeMount() {
         this.actualCount = this.data.length < +this.count ? this.data.length : +this.count;
@@ -57,7 +59,7 @@ class Carousel<T> extends Vue {
     get ulStyle() {
         return {
             width: `${this.width * this.actualCount * 3}px`,
-            left: `-${this.width * this.actualCount}px`,
+            left: this.touchOffset ? `${this.touchOffset - this.width * this.actualCount}px` : `-${this.width * this.actualCount}px`,
         };
     }
     get liStyle() {
@@ -80,19 +82,13 @@ class Carousel<T> extends Vue {
     moveLeft(num: number) {
         this.setStyle(num, this.width);
         common.runAnimation(this.$refs.ul as HTMLElement, this.timeout, "move-left", num, () => {
-            this.currentIndex -= num;
-            if (this.currentIndex < this.actualCount) {
-                this.currentIndex += this.data.length - this.actualCount * 2;
-            }
+            this.moveLeftNow(num);
         });
     }
     moveRight(num: number) {
         this.setStyle(num, this.width);
         common.runAnimation(this.$refs.ul as HTMLElement, this.timeout, "move-right", num, () => {
-            this.currentIndex += num;
-            if (this.currentIndex >= this.data.length - this.actualCount) {
-                this.currentIndex -= this.data.length - this.actualCount * 2;
-            }
+            this.moveRightNow(num);
         });
     }
     mouseenterLeft() {
@@ -111,7 +107,62 @@ class Carousel<T> extends Vue {
         this.hoveringRight = false;
         this.start();
     }
+    touchstart(e: TouchEvent) {
+        this.pause();
+        if (e.changedTouches && e.changedTouches.length > 0) {
+            this.touchStartPageX = e.changedTouches[0].pageX;
+        }
+    }
+    touchmove(e: TouchEvent) {
+        if (e.changedTouches && e.changedTouches.length > 0) {
+            this.touchOffset = e.changedTouches[0].pageX - this.touchStartPageX;
+        }
+    }
+    touchend(e: TouchEvent) {
+        this.start();
+        if (e.changedTouches && e.changedTouches.length > 0) {
+            let offset = e.changedTouches[0].pageX - this.touchStartPageX;
 
+            const count = Math.round(offset / this.width);
+            if (count !== 0) {
+                offset -= count * this.width;
+                this.touchOffset = offset;
+                if (count > 0) {
+                    this.moveLeftNow(count);
+                } else {
+                    this.moveRightNow(-count);
+                }
+            }
+
+            let start: number | null = null;
+            const step = (timestamp: number) => {
+                if (start === null) {
+                    start = timestamp;
+                }
+                const progress = timestamp - start;
+                this.touchOffset = offset - offset * progress / this.timeout;
+                if (progress < this.timeout) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    this.touchOffset = 0;
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    }
+
+    private moveLeftNow(num: number) {
+        this.currentIndex -= num;
+        if (this.currentIndex < this.actualCount) {
+            this.currentIndex += this.data.length - this.actualCount * 2;
+        }
+    }
+    private moveRightNow(num: number) {
+        this.currentIndex += num;
+        if (this.currentIndex >= this.data.length - this.actualCount) {
+            this.currentIndex -= this.data.length - this.actualCount * 2;
+        }
+    }
     private setStyle(num: number, width: number) {
         if (this.lastNum === num && this.lastWidth === width) {
             return;

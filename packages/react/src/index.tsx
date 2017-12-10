@@ -27,6 +27,8 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
     private lastNum: number;
     private actualCount = 0;
     private container: HTMLElement;
+    private touchStartPageX: number;
+    private touchOffset = 0;
 
     constructor(props: Props<T>) {
         super(props);
@@ -54,6 +56,9 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
             <div className="carousel" style={this.containerStyle}>
                 <div className="main" style={this.mainStyle}>
                     <ul style={this.ulStyle}
+                        onTouchStart={(e) => this.touchstart(e)}
+                        onTouchMove={e => this.touchmove(e)}
+                        onTouchEnd={e => this.touchend(e)}
                         onMouseEnter={() => this.pause()}
                         onMouseLeave={() => this.start()}>
                         {list}
@@ -101,7 +106,7 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
     private get ulStyle() {
         return {
             width: `${this.props.width * this.actualCount * 3}px`,
-            left: `-${this.props.width * this.actualCount}px`,
+            left: this.touchOffset ? `${this.touchOffset - this.props.width * this.actualCount}px` : `-${this.props.width * this.actualCount}px`,
         };
     }
     private get liStyle() {
@@ -122,21 +127,13 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
     private moveLeft(num: number) {
         this.setStyle(num, this.props.width);
         common.runAnimation(this.container, this.props.timeout, "move-left", num, () => {
-            this.currentIndex -= num;
-            if (this.currentIndex < this.actualCount) {
-                this.currentIndex += this.props.data.length - this.actualCount * 2;
-            }
-            this.setState({ currentIndex: this.currentIndex });
+            this.moveLeftNow(num);
         });
     }
     private moveRight(num: number) {
         this.setStyle(num, this.props.width);
         common.runAnimation(this.container, this.props.timeout, "move-right", num, () => {
-            this.currentIndex += num;
-            if (this.currentIndex >= this.props.data.length - this.actualCount) {
-                this.currentIndex -= this.props.data.length - this.actualCount * 2;
-            }
-            this.setState({ currentIndex: this.currentIndex });
+            this.moveRightNow(num);
         });
     }
     private pause() {
@@ -168,5 +165,68 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
         this.hoveringRight = false;
         this.setState({ hoveringRight: this.hoveringRight });
         this.start();
+    }
+    private touchstart(e: React.TouchEvent<HTMLUListElement>) {
+        this.pause();
+        if (e.changedTouches && e.changedTouches.length > 0) {
+            this.touchStartPageX = e.changedTouches[0].pageX;
+            this.setState({ touchStartPageX: this.touchStartPageX });
+        }
+    }
+    private touchmove(e: React.TouchEvent<HTMLUListElement>) {
+        if (e.changedTouches && e.changedTouches.length > 0) {
+            this.touchOffset = e.changedTouches[0].pageX - this.touchStartPageX;
+            this.setState({ touchStartPageX: this.touchStartPageX });
+        }
+    }
+    private touchend(e: React.TouchEvent<HTMLUListElement>) {
+        this.start();
+        if (e.changedTouches && e.changedTouches.length > 0) {
+            let offset = e.changedTouches[0].pageX - this.touchStartPageX;
+
+            const count = Math.round(offset / this.props.width);
+            if (count !== 0) {
+                offset -= count * this.props.width;
+                this.touchOffset = offset;
+                this.setState({ touchOffset: this.touchOffset });
+                if (count > 0) {
+                    this.moveLeftNow(count);
+                } else {
+                    this.moveRightNow(-count);
+                }
+            }
+
+            let start: number | null = null;
+            const step = (timestamp: number) => {
+                if (start === null) {
+                    start = timestamp;
+                }
+                const progress = timestamp - start;
+                this.touchOffset = offset - offset * progress / this.props.timeout;
+                this.setState({ touchOffset: this.touchOffset });
+                if (progress < this.props.timeout) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    this.touchOffset = 0;
+                    this.setState({ touchOffset: this.touchOffset });
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    }
+
+    private moveLeftNow(num: number) {
+        this.currentIndex -= num;
+        if (this.currentIndex < this.actualCount) {
+            this.currentIndex += this.props.data.length - this.actualCount * 2;
+        }
+        this.setState({ currentIndex: this.currentIndex });
+    }
+    private moveRightNow(num: number) {
+        this.currentIndex += num;
+        if (this.currentIndex >= this.props.data.length - this.actualCount) {
+            this.currentIndex -= this.props.data.length - this.actualCount * 2;
+        }
+        this.setState({ currentIndex: this.currentIndex });
     }
 }
