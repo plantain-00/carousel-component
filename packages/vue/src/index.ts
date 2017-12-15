@@ -5,10 +5,10 @@ export * from "carousel-component";
 import { indexTemplateHtml } from "./variables";
 
 @Component({
-    template: indexTemplateHtml,
+    render: indexTemplateHtml,
     props: ["data", "timeout", "interval", "count", "width", "height"],
 })
-class Carousel<T> extends Vue {
+export class Carousel<T> extends Vue {
     data: common.CarouselData<T>[];
     timeout: number;
     interval: number;
