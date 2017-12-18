@@ -2,10 +2,11 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import * as common from "carousel-component";
 export * from "carousel-component";
-import { indexTemplateHtml } from "./variables";
+import { indexTemplateHtml, indexTemplateHtmlStatic } from "./variables";
 
 @Component({
     render: indexTemplateHtml,
+    staticRenderFns: indexTemplateHtmlStatic,
     props: ["data", "timeout", "interval", "count", "width", "height"],
 })
 export class Carousel<T> extends Vue {
