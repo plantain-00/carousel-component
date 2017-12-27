@@ -1,6 +1,6 @@
 {
   "name": "carousel-component",
-  "version": "3.0.0",
+  "version": "3.2.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "A vuejs and reactjs carousel component.",
@@ -14,7 +14,14 @@
     "url": "https://github.com/plantain-00/carousel-component/issues"
   },
   "homepage": "https://github.com/plantain-00/carousel-component#readme",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
+    "@types/node": "*",
+    "tslib": "1"
+  },
+  "peerDependencies": {
     "@types/node": "*",
     "tslib": "1"
   }
