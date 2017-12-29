@@ -1,3 +1,5 @@
+# carousel-component
+
 [![Dependency Status](https://david-dm.org/plantain-00/carousel-component.svg)](https://david-dm.org/plantain-00/carousel-component)
 [![devDependency Status](https://david-dm.org/plantain-00/carousel-component/dev-status.svg)](https://david-dm.org/plantain-00/carousel-component#info=devDependencies)
 [![Build Status: Linux](https://travis-ci.org/plantain-00/carousel-component.svg?branch=master)](https://travis-ci.org/plantain-00/carousel-component)
@@ -5,22 +7,21 @@
 [![npm version](https://badge.fury.io/js/carousel-component.svg)](https://badge.fury.io/js/carousel-component)
 [![Downloads](https://img.shields.io/npm/dm/carousel-component.svg)](https://www.npmjs.com/package/carousel-component)
 
-# carousel-component
 A vuejs and reactjs carousel component.
 
-#### features
+## features
 
 + vuejs component
 + reactjs component
 + custom component
 
-#### link css
+## link css
 
 ```html
 <link rel="stylesheet" href="./node_modules/carousel-component/dist/carousel.min.css" />
 ```
 
-#### vuejs component
+## vuejs component
 
 `npm i carousel-vue-component`
 
@@ -38,9 +39,9 @@ import "carousel-vue-component";
 </carousel>
 ```
 
-the online demo: https://plantain-00.github.io/carousel-component/packages/vue/demo
+the online demo: <https://plantain-00.github.io/carousel-component/packages/vue/demo>
 
-#### reactjs component
+## reactjs component
 
 `npm i carousel-react-component`
 
@@ -58,9 +59,9 @@ import { Carousel } from "carousel-react-component";
 </Carousel>
 ```
 
-the online demo: https://plantain-00.github.io/carousel-component/packages/react/demo
+the online demo: <https://plantain-00.github.io/carousel-component/packages/react/demo>
 
-#### properties and events of the component
+## properties and events of the component
 
 name | type | description
 --- | --- | ---
@@ -71,7 +72,7 @@ count | number | the item count at most
 width | number | width of an item
 height | number | height of items
 
-#### carousel data structure
+## carousel data structure
 
 ```ts
 type CarouselData<T = any> = {
@@ -80,7 +81,7 @@ type CarouselData<T = any> = {
 };
 ```
 
-#### change logs
+## change logs
 
 ```bash
 # v2
