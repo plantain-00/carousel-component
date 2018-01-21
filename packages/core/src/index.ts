@@ -2,7 +2,6 @@
  * @public
  */
 export type CarouselData<T = any> = {
-    // tslint:disable-next-line:ban-types
   component: string | Function;
   data: T;
 }
