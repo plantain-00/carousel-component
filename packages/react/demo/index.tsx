@@ -7,29 +7,29 @@ const CarouselItem: React.StatelessComponent<{ data: number }> = props => <span>
 
 class Main extends React.Component<{}, {}> {
   private data: CarouselData<number>[] = [
-        { data: 1, component: CarouselItem },
-        { data: 2, component: CarouselItem },
-        { data: 3, component: CarouselItem },
-        { data: 4, component: CarouselItem },
-        { data: 5, component: CarouselItem },
-        { data: 6, component: CarouselItem },
-        { data: 7, component: CarouselItem },
-        { data: 8, component: CarouselItem },
-        { data: 9, component: CarouselItem }
+    { data: 1, component: CarouselItem },
+    { data: 2, component: CarouselItem },
+    { data: 3, component: CarouselItem },
+    { data: 4, component: CarouselItem },
+    { data: 5, component: CarouselItem },
+    { data: 6, component: CarouselItem },
+    { data: 7, component: CarouselItem },
+    { data: 8, component: CarouselItem },
+    { data: 9, component: CarouselItem }
   ]
 
   render () {
     return (
-            <div>
-                <a href='https://github.com/plantain-00/carousel-component/tree/master/packages/react/demo' target='_blank'>the source code of the demo</a>
-                <Carousel data={this.data}
-                    timeout={500}
-                    interval={3000}
-                    count={5}
-                    width={200}
-                    height={150}>
-                </Carousel>
-            </div>
+      <div>
+        <a href='https://github.com/plantain-00/carousel-component/tree/master/packages/react/demo' target='_blank'>the source code of the demo</a>
+        <Carousel data={this.data}
+          timeout={500}
+          interval={3000}
+          count={5}
+          width={200}
+          height={150}>
+        </Carousel>
+      </div>
     )
   }
 }

@@ -44,39 +44,39 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
 
   render () {
     const list = this.props.data.filter((item, i) => i >= this.currentIndex - this.actualCount && i < this.currentIndex + this.actualCount * 2)
-            .map((item, i) => {
-              const conponent = React.createElement(item.component as React.ComponentClass<{ data: any }>, { data: item.data })
-              return (
-                    <li style={this.liStyle} key={i}>
-                        {conponent}
-                    </li >
-              )
-            })
+      .map((item, i) => {
+        const conponent = React.createElement(item.component as React.ComponentClass<{ data: any }>, { data: item.data })
+        return (
+          <li style={this.liStyle} key={i}>
+            {conponent}
+          </li >
+        )
+      })
     return (
-            <div className='carousel' style={this.containerStyle}>
-                <div className='main' style={this.mainStyle}>
-                    <ul style={this.ulStyle}
-                        onTouchStart={(e) => this.touchstart(e)}
-                        onTouchMove={e => this.touchmove(e)}
-                        onTouchEnd={e => this.touchend(e)}
-                        onMouseEnter={() => this.pause()}
-                        onMouseLeave={() => this.start()}>
-                        {list}
-                    </ul >
-                </div >
-                <div className='left'
-                    style={this.leftStyle}
-                    onClick={() => this.moveLeft(this.actualCount)}
-                    onMouseEnter={() => this.mouseenterLeft()}
-                    onMouseLeave={() => this.mouseleaveLeft()} >
-                </div >
-                <div className='right'
-                    style={this.rightStyle}
-                    onClick={() => this.moveRight(this.actualCount)}
-                    onMouseEnter={() => this.mouseenterRight()}
-                    onMouseLeave={() => this.mouseleaveRight()} >
-                </div >
-            </div >
+      <div className='carousel' style={this.containerStyle}>
+        <div className='main' style={this.mainStyle}>
+          <ul style={this.ulStyle}
+            onTouchStart={(e) => this.touchstart(e)}
+            onTouchMove={e => this.touchmove(e)}
+            onTouchEnd={e => this.touchend(e)}
+            onMouseEnter={() => this.pause()}
+            onMouseLeave={() => this.start()}>
+            {list}
+          </ul >
+        </div >
+        <div className='left'
+          style={this.leftStyle}
+          onClick={() => this.moveLeft(this.actualCount)}
+          onMouseEnter={() => this.mouseenterLeft()}
+          onMouseLeave={() => this.mouseleaveLeft()} >
+        </div >
+        <div className='right'
+          style={this.rightStyle}
+          onClick={() => this.moveRight(this.actualCount)}
+          onMouseEnter={() => this.mouseenterRight()}
+          onMouseLeave={() => this.mouseleaveRight()} >
+        </div >
+      </div >
     )
   }
 
