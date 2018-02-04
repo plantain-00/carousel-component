@@ -19,15 +19,15 @@ export type Props<T> = {
  * @public
  */
 export class Carousel<T> extends React.Component<Props<T>, {}> {
-  private timer: NodeJS.Timer
+  private timer: NodeJS.Timer | undefined
   private currentIndex = 0
   private hoveringLeft = false
   private hoveringRight = false
-  private lastWidth: number
-  private lastNum: number
+  private lastWidth = 0
+  private lastNum = 0
   private actualCount = 0
-  private container: HTMLElement
-  private touchStartPageX: number
+  private container: HTMLElement | undefined
+  private touchStartPageX = 0
   private touchOffset = 0
 
   constructor (props: Props<T>) {
@@ -126,13 +126,13 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
   }
   private moveLeft (num: number) {
     this.setStyle(num, this.props.width)
-    common.runAnimation(this.container, this.props.timeout, 'move-left', num, () => {
+    common.runAnimation(this.container!, this.props.timeout, 'move-left', num, () => {
       this.moveLeftNow(num)
     })
   }
   private moveRight (num: number) {
     this.setStyle(num, this.props.width)
-    common.runAnimation(this.container, this.props.timeout, 'move-right', num, () => {
+    common.runAnimation(this.container!, this.props.timeout, 'move-right', num, () => {
       this.moveRightNow(num)
     })
   }

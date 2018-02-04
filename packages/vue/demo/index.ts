@@ -9,7 +9,7 @@ import { CarouselData } from '../dist/'
   props: ['data']
 })
 class CarouselItem extends Vue {
-  data: number
+  data!: number
 }
 Vue.component('carousel-item', CarouselItem)
 

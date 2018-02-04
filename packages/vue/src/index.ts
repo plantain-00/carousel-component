@@ -10,21 +10,21 @@ import { indexTemplateHtml, indexTemplateHtmlStatic } from './variables'
   props: ['data', 'timeout', 'interval', 'count', 'width', 'height']
 })
 export class Carousel<T> extends Vue {
-  data: common.CarouselData<T>[]
-  timeout: number
-  interval: number
-  count: number
-  width: number
-  height: number
+  data!: common.CarouselData<T>[]
+  timeout!: number
+  interval!: number
+  count!: number
+  width!: number
+  height!: number
 
   currentIndex = 0
   actualCount = 0
-  private timer: NodeJS.Timer
+  private timer: NodeJS.Timer | undefined
   private hoveringLeft = false
   private hoveringRight = false
-  private lastWidth: number
-  private lastNum: number
-  private touchStartPageX: number
+  private lastWidth = 0
+  private lastNum = 0
+  private touchStartPageX = 0
   private touchOffset = 0
 
   beforeMount () {
