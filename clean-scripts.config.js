@@ -6,15 +6,14 @@ const lessFiles = `"packages/core/src/**/*.less"`
 const jsFiles = `"*.config.js" "spec/**/*.config.js"`
 
 const vueTemplateCommand = `file2variable-cli --config packages/vue/src/file2variable.config.js`
-const tscSrcCommand = [
-  `tsc -p packages/core/src`,
-  `tsc -p packages/vue/src`,
-  `tsc -p packages/react/src`
-]
-const tscDemoCommand = [
-  `tsc -p packages/vue/demo`,
-  `tsc -p packages/react/demo`
-]
+
+const tscCoreSrcCommand = `tsc -p packages/core/src`
+const tscVueSrcCommand = `tsc -p packages/vue/src`
+const tscReactSrcCommand = `tsc -p packages/react/src`
+
+const tscVueDemoCommand = `tsc -p packages/vue/demo`
+const tscReactDemoCommand = `tsc -p packages/react/demo`
+
 const webpackCommand = `webpack`
 const revStaticCommand = `rev-static`
 const cssCommand = [
@@ -29,8 +28,15 @@ module.exports = {
     {
       js: [
         vueTemplateCommand,
-        tscSrcCommand,
-        tscDemoCommand,
+        tscCoreSrcCommand,
+        {
+          tscVueSrcCommand,
+          tscReactSrcCommand
+        },
+        {
+          tscVueDemoCommand,
+          tscReactDemoCommand
+        },
         webpackCommand
       ],
       css: cssCommand,
@@ -57,9 +63,12 @@ module.exports = {
     less: `stylelint --fix ${lessFiles}`
   },
   watch: {
-    vue: `${vueTemplateCommand} --watch`,
-    src: `${tscSrcCommand} --watch`,
-    demo: `${tscDemoCommand} --watch`,
+    vueTemplateCommand: `${vueTemplateCommand} --watch`,
+    tscCoreSrcCommand: `${tscCoreSrcCommand} --watch`,
+    tscVueSrcCommand: `${tscVueSrcCommand} --watch`,
+    tscReactSrcCommand: `${tscReactSrcCommand} --watch`,
+    tscVueDemoCommand: `${tscVueDemoCommand} --watch`,
+    tscReactDemoCommand: `${tscReactDemoCommand} --watch`,
     webpack: `${webpackCommand} --watch`,
     less: () => watch(['src/**/*.less'], [], () => executeScriptAsync(cssCommand)),
     rev: `${revStaticCommand} --watch`
