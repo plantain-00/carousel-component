@@ -14,7 +14,9 @@ const tscReactSrcCommand = `tsc -p packages/react/src`
 const tscVueDemoCommand = `tsc -p packages/vue/demo`
 const tscReactDemoCommand = `tsc -p packages/react/demo`
 
-const webpackCommand = `webpack`
+const webpackVueCommand = `webpack --config packages/vue/demo/webpack.config.js`
+const webpackReactCommand = `webpack --config packages/react/demo/webpack.config.js`
+
 const revStaticCommand = `rev-static`
 const cssCommand = [
   `lessc packages/core/src/carousel.less -sm=on > packages/core/src/carousel.css`,
@@ -27,17 +29,20 @@ module.exports = {
   build: [
     {
       js: [
-        vueTemplateCommand,
         tscCoreSrcCommand,
         {
-          tscVueSrcCommand,
-          tscReactSrcCommand
-        },
-        {
-          tscVueDemoCommand,
-          tscReactDemoCommand
-        },
-        webpackCommand
+          vue: [
+            vueTemplateCommand,
+            tscVueSrcCommand,
+            tscVueDemoCommand,
+            webpackVueCommand
+          ],
+          react: [
+            tscReactSrcCommand,
+            tscReactDemoCommand,
+            webpackReactCommand
+          ]
+        }
       ],
       css: cssCommand,
       clean: `rimraf "packages/@(core|vue|react|angular)/demo/**/@(*.bundle-*.js|*.bundle-*.css)"`
@@ -69,7 +74,8 @@ module.exports = {
     tscReactSrcCommand: `${tscReactSrcCommand} --watch`,
     tscVueDemoCommand: `${tscVueDemoCommand} --watch`,
     tscReactDemoCommand: `${tscReactDemoCommand} --watch`,
-    webpack: `${webpackCommand} --watch`,
+    webpackVueCommand: `${webpackVueCommand} --watch`,
+    webpackReactCommand: `${webpackReactCommand} --watch`,
     less: () => watch(['src/**/*.less'], [], () => executeScriptAsync(cssCommand)),
     rev: `${revStaticCommand} --watch`
   },
