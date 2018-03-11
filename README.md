@@ -29,6 +29,14 @@ A vuejs and reactjs carousel component.
 import "carousel-vue-component";
 ```
 
+or
+
+```html
+<script src="./node_modules/vue/dist/vue.min.js"></script>
+<script src="./node_modules/vue-class-component/dist/vue-class-component.min.js"></script>
+<script src="./node_modules/carousel-vue-component/dist/carousel-vue-component.min.js"></script>
+```
+
 ```html
 <carousel :data="data"
     timeout="500"
@@ -47,6 +55,14 @@ the online demo: <https://plantain-00.github.io/carousel-component/packages/vue/
 
 ```ts
 import { Carousel } from "carousel-react-component";
+```
+
+or
+
+```html
+<script src="./node_modules/react/umd/react.production.min.js"></script>
+<script src="./node_modules/react-dom/umd/react-dom.production.min.js"></script>
+<script src="./node_modules/carousel-react-component/dist/carousel-react-component.min.js"></script>
 ```
 
 ```jsx
