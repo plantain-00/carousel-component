@@ -1,6 +1,6 @@
 {
   "name": "carousel-vue-component",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "A vuejs carousel component.",
@@ -18,12 +18,12 @@
     "dist"
   ],
   "dependencies": {
-    "carousel-component": "^3.2.1",
+    "carousel-component": "^3.3.0",
     "vue": "2",
     "vue-class-component": "6"
   },
   "peerDependencies": {
-    "carousel-component": "^3.2.1",
+    "carousel-component": "^3.3.0",
     "vue": "2",
     "vue-class-component": "6"
   }

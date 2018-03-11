@@ -1,6 +1,6 @@
 {
   "name": "carousel-react-component",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "A reactjs carousel component.",
@@ -18,7 +18,7 @@
     "dist"
   ],
   "dependencies": {
-    "carousel-component": "^3.2.1",
+    "carousel-component": "^3.3.0",
     "react": "16",
     "react-dom": "16"
   },
@@ -27,7 +27,7 @@
     "@types/react-dom": "16.0.4"
   },
   "peerDependencies": {
-    "carousel-component": "^3.2.1",
+    "carousel-component": "^3.3.0",
     "react": "16",
     "react-dom": "16"
   }
