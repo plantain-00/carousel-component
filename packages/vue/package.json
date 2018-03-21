@@ -2,6 +2,9 @@
   "name": "carousel-vue-component",
   "version": "3.3.0",
   "main": "dist/index.js",
+  "module": "dist/index.js",
+  "unpkg": "dist/carousel-vue-component.min.js",
+  "jsdelivr": "dist/carousel-vue-component.min.js",
   "types": "dist/index.d.ts",
   "description": "A vuejs carousel component.",
   "repository": {
