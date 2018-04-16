@@ -1,0 +1,37 @@
+{
+  "name": "carousel-react-component",
+  "version": "3.3.2",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "unpkg": "dist/carousel-react-component.min.js",
+  "jsdelivr": "dist/carousel-react-component.min.js",
+  "types": "dist/index.d.ts",
+  "description": "A reactjs carousel component.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plantain-00/carousel-component.git"
+  },
+  "author": "York Yao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plantain-00/carousel-component/issues"
+  },
+  "homepage": "https://github.com/plantain-00/carousel-component#readme",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "carousel-component": "^3.3.2",
+    "react": "16",
+    "react-dom": "16"
+  },
+  "devDependencies": {
+    "@types/react": "16.3.10",
+    "@types/react-dom": "16.0.5"
+  },
+  "peerDependencies": {
+    "carousel-component": "^3.3.2",
+    "react": "16",
+    "react-dom": "16"
+  }
+}

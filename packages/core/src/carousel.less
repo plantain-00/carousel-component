@@ -1,0 +1,42 @@
+.carousel {
+  position: absolute;
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .main {
+    position: absolute;
+    overflow: hidden;
+
+    ul {
+      position: relative;
+
+      li {
+        list-style: none;
+        float: left;
+        text-align: center;
+      }
+    }
+  }
+
+  .left,
+  .right {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    cursor: pointer;
+    background-color: gray;
+    width: 20px;
+  }
+
+  .left {
+    left: 0;
+  }
+
+  .right {
+    right: 0;
+  }
+}
