@@ -11,7 +11,7 @@ const animationKeyframesIdName = 'carousel-animation-keyframes'
 /**
  * @public
  */
-export function setStyle (num: number, width: number, count: number) {
+export function setStyle(num: number, width: number, count: number) {
   let style = document.getElementById(animationKeyframesIdName) as HTMLStyleElement
   if (!style) {
     style = document.createElement('style')
@@ -32,7 +32,7 @@ export function setStyle (num: number, width: number, count: number) {
 /**
  * @public
  */
-export function runAnimation (ul: HTMLElement, timeout: number, keyframes: string, num: number, next: () => void) {
+export function runAnimation(ul: HTMLElement, timeout: number, keyframes: string, num: number, next: () => void) {
   ul.style.animation = ''
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
@@ -47,7 +47,7 @@ export function runAnimation (ul: HTMLElement, timeout: number, keyframes: strin
 /**
  * @public
  */
-export function appendLeftAndRightData<T> (data: CarouselData<T>[], actualCount: number) {
+export function appendLeftAndRightData<T>(data: CarouselData<T>[], actualCount: number) {
   const leftItems = data.slice(data.length - actualCount)
   const rightItems = data.slice(0, actualCount)
   data.unshift(...leftItems)

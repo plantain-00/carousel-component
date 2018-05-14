@@ -4,6 +4,8 @@ import Component from 'vue-class-component'
 import '../dist/'
 import { CarouselData } from '../dist/'
 
+const itemComponentName = 'carousel-item'
+
 @Component({
   template: `<span>{{data}}</span>`,
   props: ['data']
@@ -11,7 +13,7 @@ import { CarouselData } from '../dist/'
 class CarouselItem extends Vue {
   data!: number
 }
-Vue.component('carousel-item', CarouselItem)
+Vue.component(itemComponentName, CarouselItem)
 
 @Component({
   template: `
@@ -29,15 +31,15 @@ Vue.component('carousel-item', CarouselItem)
 })
 class App extends Vue {
   data: CarouselData<number>[] = [
-        { data: 1, component: 'carousel-item' },
-        { data: 2, component: 'carousel-item' },
-        { data: 3, component: 'carousel-item' },
-        { data: 4, component: 'carousel-item' },
-        { data: 5, component: 'carousel-item' },
-        { data: 6, component: 'carousel-item' },
-        { data: 7, component: 'carousel-item' },
-        { data: 8, component: 'carousel-item' },
-        { data: 9, component: 'carousel-item' }
+        { data: 1, component: itemComponentName },
+        { data: 2, component: itemComponentName },
+        { data: 3, component: itemComponentName },
+        { data: 4, component: itemComponentName },
+        { data: 5, component: itemComponentName },
+        { data: 6, component: itemComponentName },
+        { data: 7, component: itemComponentName },
+        { data: 8, component: itemComponentName },
+        { data: 9, component: itemComponentName }
   ]
 }
 

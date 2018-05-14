@@ -18,7 +18,7 @@ class Main extends React.Component<{}, {}> {
     { data: 9, component: CarouselItem }
   ]
 
-  render () {
+  render() {
     return (
       <div>
         <a href='https://github.com/plantain-00/carousel-component/tree/master/packages/react/demo' target='_blank'>the source code of the demo</a>
