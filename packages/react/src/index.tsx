@@ -30,7 +30,7 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
   private touchStartPageX = 0
   private touchOffset = 0
 
-  constructor (props: Props<T>) {
+  constructor(props: Props<T>) {
     super(props)
     this.actualCount = this.props.data.length < +this.props.count ? this.props.data.length : +this.props.count
     this.currentIndex = this.actualCount
@@ -38,11 +38,11 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
     this.start()
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.container = (ReactDOM.findDOMNode(this as any)!.childNodes[0] as HTMLElement).childNodes[0] as HTMLElement
   }
 
-  render () {
+  render() {
     const list = this.props.data.filter((item, i) => i >= this.currentIndex - this.actualCount && i < this.currentIndex + this.actualCount * 2)
       .map((item, i) => {
         const conponent = React.createElement(item.component as React.ComponentClass<{ data: any }>, { data: item.data })
@@ -80,43 +80,43 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
     )
   }
 
-  private get leftStyle () {
+  private get leftStyle() {
     return {
       opacity: this.hoveringLeft ? 100 : 0
     }
   }
 
-  private get rightStyle () {
+  private get rightStyle() {
     return {
       opacity: this.hoveringRight ? 100 : 0
     }
   }
 
-  private get containerStyle () {
+  private get containerStyle() {
     return {
       width: `${this.props.width * this.actualCount}px`,
       height: `${this.props.height}px`
     }
   }
-  private get mainStyle () {
+  private get mainStyle() {
     return {
       width: `${this.props.width * this.actualCount}px`
     }
   }
-  private get ulStyle () {
+  private get ulStyle() {
     return {
       width: `${this.props.width * this.actualCount * 3}px`,
       left: this.touchOffset ? `${this.touchOffset - this.props.width * this.actualCount}px` : `-${this.props.width * this.actualCount}px`
     }
   }
-  private get liStyle () {
+  private get liStyle() {
     return {
       width: `${this.props.width}px`,
       height: `${this.props.height}px`
     }
   }
 
-  private setStyle (num: number, width: number) {
+  private setStyle(num: number, width: number) {
     if (this.lastNum === num && this.lastWidth === width) {
       return
     }
@@ -124,62 +124,62 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
     this.lastWidth = width
     common.setStyle(num, width, this.actualCount)
   }
-  private moveLeft (num: number) {
+  private moveLeft(num: number) {
     this.setStyle(num, this.props.width)
     common.runAnimation(this.container!, this.props.timeout, 'move-left', num, () => {
       this.moveLeftNow(num)
     })
   }
-  private moveRight (num: number) {
+  private moveRight(num: number) {
     this.setStyle(num, this.props.width)
     common.runAnimation(this.container!, this.props.timeout, 'move-right', num, () => {
       this.moveRightNow(num)
     })
   }
-  private pause () {
+  private pause() {
     if (this.timer) {
       clearInterval(this.timer)
     }
   }
-  private start () {
+  private start() {
     this.timer = setInterval(() => {
       this.moveRight(1)
     }, this.props.interval)
   }
-  private mouseenterLeft () {
+  private mouseenterLeft() {
     this.hoveringLeft = true
     this.setState({ hoveringLeft: this.hoveringLeft })
     this.pause()
   }
-  private mouseleaveLeft () {
+  private mouseleaveLeft() {
     this.hoveringLeft = false
     this.setState({ hoveringLeft: this.hoveringLeft })
     this.start()
   }
-  private mouseenterRight () {
+  private mouseenterRight() {
     this.hoveringRight = true
     this.setState({ hoveringRight: this.hoveringRight })
     this.pause()
   }
-  private mouseleaveRight () {
+  private mouseleaveRight() {
     this.hoveringRight = false
     this.setState({ hoveringRight: this.hoveringRight })
     this.start()
   }
-  private touchstart (e: React.TouchEvent<HTMLUListElement>) {
+  private touchstart(e: React.TouchEvent<HTMLUListElement>) {
     this.pause()
     if (e.changedTouches && e.changedTouches.length > 0) {
       this.touchStartPageX = e.changedTouches[0].pageX
       this.setState({ touchStartPageX: this.touchStartPageX })
     }
   }
-  private touchmove (e: React.TouchEvent<HTMLUListElement>) {
+  private touchmove(e: React.TouchEvent<HTMLUListElement>) {
     if (e.changedTouches && e.changedTouches.length > 0) {
       this.touchOffset = e.changedTouches[0].pageX - this.touchStartPageX
       this.setState({ touchStartPageX: this.touchStartPageX })
     }
   }
-  private touchend (e: React.TouchEvent<HTMLUListElement>) {
+  private touchend(e: React.TouchEvent<HTMLUListElement>) {
     this.start()
     if (e.changedTouches && e.changedTouches.length > 0) {
       let offset = e.changedTouches[0].pageX - this.touchStartPageX
@@ -215,14 +215,14 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
     }
   }
 
-  private moveLeftNow (num: number) {
+  private moveLeftNow(num: number) {
     this.currentIndex -= num
     if (this.currentIndex < this.actualCount) {
       this.currentIndex += this.props.data.length - this.actualCount * 2
     }
     this.setState({ currentIndex: this.currentIndex })
   }
-  private moveRightNow (num: number) {
+  private moveRightNow(num: number) {
     this.currentIndex += num
     if (this.currentIndex >= this.props.data.length - this.actualCount) {
       this.currentIndex -= this.props.data.length - this.actualCount * 2

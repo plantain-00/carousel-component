@@ -27,99 +27,99 @@ export class Carousel<T> extends Vue {
   private touchStartPageX = 0
   private touchOffset = 0
 
-  beforeMount () {
+  beforeMount() {
     this.actualCount = this.data.length < +this.count ? this.data.length : +this.count
     this.currentIndex = this.actualCount
     common.appendLeftAndRightData(this.data, this.actualCount)
     this.start()
   }
 
-  get leftStyle () {
+  get leftStyle() {
     return {
       opacity: this.hoveringLeft ? 100 : 0
     }
   }
 
-  get rightStyle () {
+  get rightStyle() {
     return {
       opacity: this.hoveringRight ? 100 : 0
     }
   }
 
-  get containerStyle () {
+  get containerStyle() {
     return {
       width: `${this.width * this.actualCount}px`,
       height: `${this.height}px`
     }
   }
-  get mainStyle () {
+  get mainStyle() {
     return {
       width: `${this.width * this.actualCount}px`
     }
   }
-  get ulStyle () {
+  get ulStyle() {
     return {
       width: `${this.width * this.actualCount * 3}px`,
       left: this.touchOffset ? `${this.touchOffset - this.width * this.actualCount}px` : `-${this.width * this.actualCount}px`
     }
   }
-  get liStyle () {
+  get liStyle() {
     return {
       width: `${this.width}px`,
       height: `${this.height}px`
     }
   }
 
-  pause () {
+  pause() {
     if (this.timer) {
       clearInterval(this.timer)
     }
   }
-  start () {
+  start() {
     this.timer = setInterval(() => {
       this.moveRight(1)
     }, this.interval)
   }
-  moveLeft (num: number) {
+  moveLeft(num: number) {
     this.setStyle(num, this.width)
     common.runAnimation(this.$refs.ul as HTMLElement, this.timeout, 'move-left', num, () => {
       this.moveLeftNow(num)
     })
   }
-  moveRight (num: number) {
+  moveRight(num: number) {
     this.setStyle(num, this.width)
     common.runAnimation(this.$refs.ul as HTMLElement, this.timeout, 'move-right', num, () => {
       this.moveRightNow(num)
     })
   }
-  mouseenterLeft () {
+  mouseenterLeft() {
     this.hoveringLeft = true
     this.pause()
   }
-  mouseleaveLeft () {
+  mouseleaveLeft() {
     this.hoveringLeft = false
     this.start()
   }
-  mouseenterRight () {
+  mouseenterRight() {
     this.hoveringRight = true
     this.pause()
   }
-  mouseleaveRight () {
+  mouseleaveRight() {
     this.hoveringRight = false
     this.start()
   }
-  touchstart (e: TouchEvent) {
+  touchstart(e: TouchEvent) {
     this.pause()
     if (e.changedTouches && e.changedTouches.length > 0) {
       this.touchStartPageX = e.changedTouches[0].pageX
     }
   }
-  touchmove (e: TouchEvent) {
+  touchmove(e: TouchEvent) {
     if (e.changedTouches && e.changedTouches.length > 0) {
       this.touchOffset = e.changedTouches[0].pageX - this.touchStartPageX
     }
   }
-  touchend (e: TouchEvent) {
+  touchend(e: TouchEvent) {
     this.start()
     if (e.changedTouches && e.changedTouches.length > 0) {
       let offset = e.changedTouches[0].pageX - this.touchStartPageX
@@ -152,19 +152,19 @@ export class Carousel<T> extends Vue {
     }
   }
 
-  private moveLeftNow (num: number) {
+  private moveLeftNow(num: number) {
     this.currentIndex -= num
     if (this.currentIndex < this.actualCount) {
       this.currentIndex += this.data.length - this.actualCount * 2
     }
   }
-  private moveRightNow (num: number) {
+  private moveRightNow(num: number) {
     this.currentIndex += num
     if (this.currentIndex >= this.data.length - this.actualCount) {
       this.currentIndex -= this.data.length - this.actualCount * 2
     }
   }
-  private setStyle (num: number, width: number) {
+  private setStyle(num: number, width: number) {
     if (this.lastNum === num && this.lastWidth === width) {
       return
     }
