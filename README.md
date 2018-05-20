@@ -23,6 +23,8 @@ A vuejs and reactjs carousel component.
 
 ## vuejs component
 
+[![gzip size](https://img.badgesize.io/https://unpkg.com/carousel-vue-component?compression=gzip)](https://unpkg.com/carousel-vue-component)
+
 `npm i carousel-vue-component`
 
 ```ts
@@ -50,6 +52,8 @@ or
 the online demo: <https://plantain-00.github.io/carousel-component/packages/vue/demo>
 
 ## reactjs component
+
+[![gzip size](https://img.badgesize.io/https://unpkg.com/carousel-react-component?compression=gzip)](https://unpkg.com/carousel-react-component)
 
 `npm i carousel-react-component`
 
