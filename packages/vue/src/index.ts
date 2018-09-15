@@ -19,7 +19,7 @@ export class Carousel<T> extends Vue {
 
   currentIndex = 0
   actualCount = 0
-  private timer: NodeJS.Timer | undefined
+  private timer?: NodeJS.Timer
   private hoveringLeft = false
   private hoveringRight = false
   private lastWidth = 0
