@@ -19,14 +19,14 @@ export type Props<T> = {
  * @public
  */
 export class Carousel<T> extends React.Component<Props<T>, {}> {
-  private timer: NodeJS.Timer | undefined
+  private timer?: NodeJS.Timer
   private currentIndex = 0
   private hoveringLeft = false
   private hoveringRight = false
   private lastWidth = 0
   private lastNum = 0
   private actualCount = 0
-  private container: HTMLElement | undefined
+  private container?: HTMLElement
   private touchStartPageX = 0
   private touchOffset = 0
 
