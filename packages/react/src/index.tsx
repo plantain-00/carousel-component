@@ -39,7 +39,7 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
   }
 
   componentDidMount() {
-    this.container = (ReactDOM.findDOMNode(this as any)!.childNodes[0] as HTMLElement).childNodes[0] as HTMLElement
+    this.container = ((ReactDOM.findDOMNode(this as any) as HTMLElement).childNodes[0] as HTMLElement).childNodes[0] as HTMLElement
   }
 
   render() {
