@@ -6,7 +6,7 @@ export default {
   input: 'packages/vue/dist/index.js',
   name: 'Carousel',
   plugins: [
-    resolve(),
+    resolve({ browser: true }),
     uglify(),
     commonjs()
   ],
