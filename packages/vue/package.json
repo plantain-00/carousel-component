@@ -24,10 +24,5 @@
     "carousel-component": "^3.4.0",
     "vue": "2",
     "vue-class-component": "6"
-  },
-  "peerDependencies": {
-    "carousel-component": "^3.3.2",
-    "vue": "2",
-    "vue-class-component": "6"
   }
 }
