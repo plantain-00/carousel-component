@@ -4,13 +4,13 @@ import commonjs from 'rollup-plugin-commonjs'
 
 export default {
   input: 'packages/react/dist/index.js',
-  name: 'Carousel',
   plugins: [
     resolve({ browser: true }),
     uglify(),
     commonjs()
   ],
   output: {
+    name: 'Carousel',
     file: 'packages/react/dist/carousel-react-component.min.js',
     format: 'umd'
   },
