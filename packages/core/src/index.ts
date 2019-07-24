@@ -1,7 +1,7 @@
 /**
  * @public
  */
-export type CarouselData<T = any> = {
+export interface CarouselData<T = any> {
   component: string | Function;
   data: T;
 }
