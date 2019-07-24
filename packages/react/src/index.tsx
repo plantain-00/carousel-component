@@ -6,7 +6,7 @@ export * from 'carousel-component'
 /**
  * @public
  */
-export type Props<T> = {
+export interface Props<T> {
   data: common.CarouselData<T>[];
   timeout: number;
   interval: number;
@@ -126,15 +126,19 @@ export class Carousel<T> extends React.Component<Props<T>, {}> {
   }
   private moveLeft(num: number) {
     this.setStyle(num, this.props.width)
-    common.runAnimation(this.container!, this.props.timeout, 'move-left', num, () => {
-      this.moveLeftNow(num)
-    })
+    if (this.container) {
+      common.runAnimation(this.container, this.props.timeout, 'move-left', num, () => {
+        this.moveLeftNow(num)
+      })
+    }
   }
   private moveRight(num: number) {
     this.setStyle(num, this.props.width)
-    common.runAnimation(this.container!, this.props.timeout, 'move-right', num, () => {
-      this.moveRightNow(num)
-    })
+    if (this.container) {
+      common.runAnimation(this.container, this.props.timeout, 'move-right', num, () => {
+        this.moveRightNow(num)
+      })
+    }
   }
   private pause() {
     if (this.timer) {

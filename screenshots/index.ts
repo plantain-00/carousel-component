@@ -22,23 +22,31 @@ import puppeteer from 'puppeteer'
     await page.screenshot({ path: `screenshots/${type}-6s.png` })
 
     const right = await page.$('.right')
-    await right!.hover()
+    if (right) {
+      await right.hover()
+    }
     await page.waitFor(100)
     await page.screenshot({ path: `screenshots/${type}-right-hover.png` })
 
-    await right!.click()
+    if (right) {
+      await right.click()
+    }
     await page.waitFor(500)
     await page.screenshot({ path: `screenshots/${type}-right-click.png` })
 
     const left = await page.$('.left')
-    await left!.hover()
+    if (left) {
+      await left.hover()
+    }
     await page.waitFor(100)
     await page.screenshot({ path: `screenshots/${type}-left-hover.png` })
 
-    await left!.click()
+    if (left) {
+      await left.click()
+    }
     await page.waitFor(500)
     await page.screenshot({ path: `screenshots/${type}-left-click.png` })
   }
 
-  browser.close()
+  await browser.close()
 })()
