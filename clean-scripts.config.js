@@ -19,7 +19,7 @@ const webpackReactCommand = `webpack --config packages/react/demo/webpack.config
 
 const revStaticCommand = `rev-static`
 const cssCommand = [
-  `lessc packages/core/src/carousel.less -sm=on > packages/core/src/carousel.css`,
+  `lessc packages/core/src/carousel.less --math=strict > packages/core/src/carousel.css`,
   `postcss packages/core/src/carousel.css -o packages/core/dist/carousel.css`,
   `cleancss packages/core/dist/carousel.css -o packages/core/dist/carousel.min.css`,
   `cleancss packages/core/dist/carousel.min.css ./node_modules/github-fork-ribbon-css/gh-fork-ribbon.css -o packages/core/demo/index.bundle.css`
